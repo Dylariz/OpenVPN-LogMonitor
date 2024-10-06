@@ -49,36 +49,35 @@ def read_stats():
 def get_script_path():
     return os.path.dirname(os.path.realpath(sys.argv[0]))
 
-def update_log(cn, vhost):
-    fn = os.path.join(get_script_path(), db_folder, cn) + ".log"
-    
-    if os.path.exists(fn):    
-        with open(fn, "rb") as f:
-            old_host = pickle.load(f)
+def update_log(current_connections, vhost):
+    if not any(all(vhost[k] == conn[k] for k in vhost if k not in ['recv', 'sent']) for conn in current_connections):
+        fn = os.path.join(get_script_path(), db_folder, vhost['cn']) + ".log"
         
-        for old_data in old_host:
-            if old_data['real'] == vhost['real']:
-                if old_data['since'] == vhost['since']:
-                    old_data['recv'] = vhost['recv']
-                    old_data['sent'] = vhost['sent']
-                else:
+        if os.path.exists(fn):    
+            with open(fn, "rb") as f:
+                old_connections = pickle.load(f)
+            
+            for old_data in old_connections:
+                if old_data['real'] == vhost['real']:
                     old_data['recv'] += vhost['recv']
                     old_data['sent'] += vhost['sent']
                     old_data['since'] = vhost['since']
-                break
+                    break
+            else:
+                old_connections.append(vhost)
+            
+            with open(fn, "wb") as f:
+                pickle.dump(old_connections, f)
         else:
-            old_host.append(vhost)
-        
-        with open(fn, "wb") as f:
-            pickle.dump(old_host, f)
-    else:
-        with open(fn, "wb") as f:
-            pickle.dump([vhost], f)
-
+            with open(fn, "wb") as f:
+                pickle.dump([vhost], f)
+            
 if __name__ == '__main__':
+    connections = read_stats()
     while True:
         hosts = read_stats()
-        for h in hosts:
-            update_log(h['cn'], h)
-        
+        for h in connections:
+            update_log(hosts, h)
+            
+        connections = hosts
         time.sleep(LOG_UPDATE_INTERVAL)
