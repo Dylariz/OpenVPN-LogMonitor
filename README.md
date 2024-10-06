@@ -1,3 +1,5 @@
+English | [Русский](./README-ru.md)
+
 <h1 align="center">OpenVPN-LogMonitor</h1>
 <h3>Requirements</h3>
 <p>This project requires <strong>Python 3.x</strong> and the <code>web.py</code> module. You can install it using the following command:</p>
