@@ -24,6 +24,9 @@ systemctl enable --now openvpn_display_html.service</code></pre>
   </li>
 </ol>
 
+<h3>Screenshot</h3>
+<img src="https://github.com/Dylariz/OpenVPN-LogMonitor/blob/master/preview.png?raw=true" alt="Screenshot"/>
+
 <h3>Configuration</h3>
 <p>You can modify certain settings at the beginning of the script files:</p>
 <ul>
