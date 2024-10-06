@@ -24,6 +24,9 @@ systemctl enable --now openvpn_display_html.service</code></pre>
   </li>
 </ol>
 
+<h3>Скриншот</h3>
+<img src="https://github.com/Dylariz/OpenVPN-LogMonitor/blob/master/preview.png?raw=true" alt="Screenshot"/>
+
 <h3>Конфигурация</h3>
 <p>Вы можете изменить определенные настройки в начале файлов сценариев:</p>
 <ul>
