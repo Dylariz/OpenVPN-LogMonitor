@@ -24,6 +24,9 @@ systemctl disable --now openvpn_display_html.service
 systemctl enable --now openvpn_stats.service
 systemctl enable --now openvpn_display_html.service</code></pre>
   </li>
+  <li>By default, connect to:
+    <pre><code>http://10.8.0.1:8075/</code></pre>
+  </li>
 </ol>
 
 <h3>Screenshot</h3>
