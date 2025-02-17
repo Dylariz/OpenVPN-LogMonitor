@@ -24,7 +24,7 @@ systemctl enable --now openvpn_stats.service
 systemctl enable --now openvpn_display_html.service</code></pre>
   </li>
   <li>По умолчанию подключаться к:
-    <pre><code>http://10.8.0.1:8075/</code></pre>
+    <pre><code>http://{SERVER_IP}:8075/</code></pre>
   </li>
 </ol>
 
